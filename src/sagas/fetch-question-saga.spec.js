@@ -5,5 +5,6 @@ describe('Fetch question saga', () => {
     // console.log('test running');
     const gen = handleFetchQuestion({question_id: 42});
     const { value } = gen.next();
+    expect(value).toEqual([{question_id: 42}]);
   });
 });

@@ -2,23 +2,24 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import delay from 'redux-saga';
 
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+// import { shallow, configure } from 'enzyme';
 
-configure({adapter: new Adapter()});
+// configure({adapter: new Adapter()});
 
 import NotificationsViewer from './NotificationsViewer';
 
+// the mock needs to be first
 jest.mock('../services/NotificationsService');
-
+// the import/require, after
 const notificationService = require('../services/NotificationsService').default;
 
-notificationService.default = jest.fn();
+// notificationService.default = jest.fn();
 
 describe('The notification viewer', () => {
 
   beforeAll(() => {
-    notificationService.default.mockClear();
+    // notificationService.default.mockClear();
     notificationService.__setCount(42);
   });
 
@@ -26,13 +27,13 @@ describe('The notification viewer', () => {
 
   it('should display the correct number of notifications', async() => {
     const tree = renderer.create(<NotificationsViewer />);
-    const wrapper = shallow(<NotificationsViewer />);
+    // const wrapper = shallow(<NotificationsViewer />);
 
     await delay();
 
     const instance = tree.root;
 
-    await wrapper.instance().componentDidMount();
+    // await wrapper.instance().componentDidMount();
 
     const component = instance.findByProps({className: `notifications`});
     const text = component.children[0];

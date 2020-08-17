@@ -5,9 +5,19 @@ describe('The Question Detail Component', () => {
     describe('The Question Element', () => {
       describe('mapStateToProps', () => {
         it('should map the state to props correctly', () => {
-          const appState = {};
-          const ownProps = {};
-          const component = mapStateToProps(appState, ownProps);
+          const sampleQuestion = {
+              question_id: 42,
+              body: "Space is big"
+          }
+          const appState = {
+              questions: [ sampleQuestion ]
+          };
+          const ownProps = {
+              question_id: 42,
+          };
+          const componentState = mapStateToProps(appState, ownProps);
+          console.log(componentState);
+          expect(componentState).toEqual(sampleQuestion);
         });
       });
     });
